@@ -68,6 +68,6 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
 		
 		latitudeLabel.text = String(location.coordinate.latitude)
 		longitudeLabel.text = String(location.coordinate.longitude)
-        cityLabel.text = client.getBaseRequest(latitude: latitudeLabel.text!, longitude: longitudeLabel.text!)
+        cityLabel.text = client.getCity(latitude: latitudeLabel.text!, longitude: longitudeLabel.text!)
 	}
 }

@@ -10,6 +10,7 @@ import Foundation
 
 class CityWithLocationAPI {
     private let session: URLSession
+    typealias CityCompletionHandler = (CityResponse?, Error?) -> Void
     
     private func baseUrl() -> String {
         return "https://api.bigdatacloud.net/data/reverse-geocode-client?"
@@ -23,22 +24,28 @@ class CityWithLocationAPI {
         self.init(configuration: .default)
     }
     
-    func getBaseRequest(latitude: String, longitude: String) -> String {
+    func getCity(latitude: String, longitude: String) {
         let url = URL(string: baseUrl() + "latitude=" + latitude + "&longitude=" + longitude + "&localityLanguage=fr")!
-        _ = URLRequest(url: url)
-        let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-              if let error = error {
-                print("Error with fetching films: \(error)")
-                return
-              }
-              
-              guard let httpResponse = response as? HTTPURLResponse,
-                    (200...299).contains(httpResponse.statusCode) else {
-                        print("Error with the response, unexpected status code: \(String(describing: response) )")
-                return
-              }
-            })
-            task.resume()
-        return data
+        let session = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            do {
+                if let dataResult = data {
+                    do {
+                        let jsonDecoder = JSONDecoder()
+                        let stationsResult = try jsonDecoder.decode(TagContainer.self, from: dataResult)
+                        completion(stationsResult)
+                    }
+                    catch {
+                        print("Error")
+                    }
+                }
+                else {
+                    print("No result")
+                }
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+        }
+        session.resume()
     }
 }
