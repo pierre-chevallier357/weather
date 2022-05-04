@@ -13,7 +13,8 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
 	
 	@IBOutlet weak var latitudeLabel: UILabel!
 	@IBOutlet weak var longitudeLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel?
+    
     let client = CityWithLocationAPI()
 	
 	let locationManager = CLLocationManager()
@@ -66,8 +67,17 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
 			//ICI
 		}
 		
+        print("location", location)
 		latitudeLabel.text = String(location.coordinate.latitude)
 		longitudeLabel.text = String(location.coordinate.longitude)
-        cityLabel.text = client.getCity(latitude: latitudeLabel.text!, longitude: longitudeLabel.text!)
+        client.getCity(latitude: latitudeLabel.text!, longitude: longitudeLabel.text!, completion: { tags in
+            print("locality",tags?.locality)
+            DispatchQueue.main.async {
+                self.cityLabel?.text = tags?.locality
+            }
+            
+        })
+//        cityLabel?.text = cityLabel2
+//        print("cityLabel", cityLabel)
 	}
 }

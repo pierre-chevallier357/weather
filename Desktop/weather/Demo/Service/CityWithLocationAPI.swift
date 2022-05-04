@@ -10,7 +10,6 @@ import Foundation
 
 class CityWithLocationAPI {
     private let session: URLSession
-    typealias CityCompletionHandler = (CityResponse?, Error?) -> Void
     
     private func baseUrl() -> String {
         return "https://api.bigdatacloud.net/data/reverse-geocode-client?"
@@ -24,14 +23,14 @@ class CityWithLocationAPI {
         self.init(configuration: .default)
     }
     
-    func getCity(latitude: String, longitude: String) {
+    func getCity(latitude: String, longitude: String, completion: @escaping (Weather?) -> Void) {
         let url = URL(string: baseUrl() + "latitude=" + latitude + "&longitude=" + longitude + "&localityLanguage=fr")!
         let session = URLSession.shared.dataTask(with: url) { (data, response, error) in
             do {
                 if let dataResult = data {
                     do {
                         let jsonDecoder = JSONDecoder()
-                        let stationsResult = try jsonDecoder.decode(TagContainer.self, from: dataResult)
+                        let stationsResult = try jsonDecoder.decode(Weather.self, from: dataResult)
                         completion(stationsResult)
                     }
                     catch {

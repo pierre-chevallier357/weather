@@ -87,6 +87,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6np-DR-PrP">
+                                <rect key="frame" x="186" y="811" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="x5f-wR-fKp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -103,13 +109,16 @@
                             <constraint firstItem="x5f-wR-fKp" firstAttribute="trailing" secondItem="Lau-1a-FqU" secondAttribute="trailing" constant="20" id="GWG-Ps-qPe"/>
                             <constraint firstItem="x5f-wR-fKp" firstAttribute="trailing" secondItem="cCV-HP-tTG" secondAttribute="trailing" constant="20" id="VeU-mU-erW"/>
                             <constraint firstItem="Bg7-NI-WTP" firstAttribute="top" secondItem="Lau-1a-FqU" secondAttribute="bottom" constant="10" id="ZhJ-HQ-AF0"/>
+                            <constraint firstItem="x5f-wR-fKp" firstAttribute="bottom" secondItem="6np-DR-PrP" secondAttribute="bottom" constant="30" id="b1U-dI-mjo"/>
                             <constraint firstItem="Lau-1a-FqU" firstAttribute="leading" secondItem="x5f-wR-fKp" secondAttribute="leading" constant="20" id="dPC-vt-Qqz"/>
+                            <constraint firstItem="6np-DR-PrP" firstAttribute="centerX" secondItem="k1y-9E-Sf0" secondAttribute="centerX" id="fwX-Fv-8bw"/>
                             <constraint firstItem="Bg7-NI-WTP" firstAttribute="leading" secondItem="x5f-wR-fKp" secondAttribute="leading" constant="20" id="gBh-bK-TZA"/>
                             <constraint firstItem="cCV-HP-tTG" firstAttribute="leading" secondItem="x5f-wR-fKp" secondAttribute="leading" constant="20" id="i0U-iC-dxi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZH3-ff-9hS"/>
                     <connections>
+                        <outlet property="cityLabel" destination="6np-DR-PrP" id="mtX-uJ-Ucc"/>
                         <outlet property="latitudeLabel" destination="Bg7-NI-WTP" id="THH-NC-8Iv"/>
                         <outlet property="longitudeLabel" destination="HRe-6x-Nks" id="RdO-wI-THf"/>
                     </connections>
