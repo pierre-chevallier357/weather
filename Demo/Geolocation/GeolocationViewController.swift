@@ -11,9 +11,12 @@ import CoreLocation
 
 class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
 	
-	@IBOutlet weak var latitudeLabel: UILabel!
-	@IBOutlet weak var longitudeLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel?
+	// @IBOutlet weak var latitudeLabel: UILabel!
+	// @IBOutlet weak var longitudeLabel: UILabel!
+    // @IBOutlet weak var cityLabel: UILabel?
+    // @IBOutlet weak var localityLabel: UILabel?
+    @IBOutlet weak var location: UILabel?
+    @IBOutlet weak var weather: UILabel?
     
     let client = CityWithLocationAPI()
 	
@@ -67,17 +70,28 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
 			//ICI
 		}
 		
-        print("location", location)
-		latitudeLabel.text = String(location.coordinate.latitude)
-		longitudeLabel.text = String(location.coordinate.longitude)
-        client.getCity(latitude: latitudeLabel.text!, longitude: longitudeLabel.text!, completion: { tags in
-            print("locality",tags?.locality)
+        // print("location", location)
+		// latitudeLabel.text = String(location.coordinate.latitude)
+		// longitudeLabel.text = String(location.coordinate.longitude)
+        client.getCity(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.latitude), completion: { tags in
+            // print("locality",tags?.locality)
+            // print("city",tags?.city)
             DispatchQueue.main.async {
-                self.cityLabel?.text = tags?.locality
+                //self.cityLabel?.text = tags?.city
+                //self.localityLabel?.text = tags?.locality
+                if (tags?.city != "") {
+                    self.location?.text = tags?.city
+                } else {
+                    self.location?.text = tags?.locality
+                }
             }
-            
         })
-//        cityLabel?.text = cityLabel2
-//        print("cityLabel", cityLabel)
+        
+        client.getWeather(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.latitude), completion: { tags in
+            print("weather",tags?.elevation)
+            DispatchQueue.main.async {
+                self.weather?.text = String((tags?.elevation)! )
+            }
+        })
 	}
 }
