@@ -74,8 +74,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
 		// latitudeLabel.text = String(location.coordinate.latitude)
 		// longitudeLabel.text = String(location.coordinate.longitude)
         client.getCity(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.latitude), completion: { tags in
-            // print("locality",tags?.locality)
-            // print("city",tags?.city)
+            // print("locality",tags?.city)
             DispatchQueue.main.async {
                 //self.cityLabel?.text = tags?.city
                 //self.localityLabel?.text = tags?.locality
@@ -93,5 +92,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
                 self.weather?.text = String((tags?.elevation)! )
             }
         })
+//        cityLabel?.text = cityLabel2
+//        print("cityLabel", cityLabel)
 	}
 }

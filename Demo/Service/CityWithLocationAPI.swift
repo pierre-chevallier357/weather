@@ -54,6 +54,7 @@ class CityWithLocationAPI {
     
     func getWeather(latitude: String, longitude: String, completion: @escaping (Weather?) -> Void) {
         let url = URL(string: baseWeatherUrl() + "latitude=" + latitude + "&longitude=" + longitude + "&hourly=temperature_2m")!
+        print("url",url)
         let session = URLSession.shared.dataTask(with: url) { (data, response, error) in
             do {
                 if let dataResult = data {
@@ -63,7 +64,7 @@ class CityWithLocationAPI {
                         completion(stationsResult)
                     }
                     catch {
-                        print("Error")
+                        print("erruuuuuur",error)
                     }
                 }
                 else {
