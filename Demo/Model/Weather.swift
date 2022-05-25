@@ -17,8 +17,8 @@ public class Weather: Decodable {
     var current_weather: CurrentWeather!
     
     public class Hourly: Decodable {
-        var time: [Date]!
-        var temperature_2m: [Int]!
+        var time: [String]!
+        var temperature_2m: [Float]!
     }
     
     public class HourlyUnits: Decodable {
@@ -26,7 +26,7 @@ public class Weather: Decodable {
     }
     
     public class CurrentWeather: Decodable {
-        var time: Date!
+        var time: String!
         var temperature: Float!
         var weathercode: Int!
         var windspeed: Float!

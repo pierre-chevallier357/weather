@@ -18,7 +18,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var location: UILabel?
     @IBOutlet weak var weather: UILabel?
     
-    let client = CityWithLocationAPI()
+    let client = WebService()
 	
 	let locationManager = CLLocationManager()
 	
@@ -65,16 +65,11 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
 	//update the position of the user when he move and show buses points with itineraire
 	func locationManager(_ manager:CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		guard let location = locations.last else { return }
-		
-		DispatchQueue.main.async {
-			//ICI
-		}
-		
-        // print("location", location)
+        
+        print("location", location)
 		// latitudeLabel.text = String(location.coordinate.latitude)
 		// longitudeLabel.text = String(location.coordinate.longitude)
-        client.getCity(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.latitude), completion: { tags in
-            // print("locality",tags?.city)
+        client.getCity(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), completion: { tags in
             DispatchQueue.main.async {
                 //self.cityLabel?.text = tags?.city
                 //self.localityLabel?.text = tags?.locality
@@ -87,12 +82,10 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
         })
         
         client.getWeather(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.latitude), completion: { tags in
-            print("weather",tags?.elevation)
+            print("weather",tags?.hourly.temperature_2m[0] as Any)
             DispatchQueue.main.async {
-                self.weather?.text = String((tags?.elevation)! )
+                self.weather?.text = String((tags?.hourly.temperature_2m[0])! )
             }
         })
-//        cityLabel?.text = cityLabel2
-//        print("cityLabel", cityLabel)
 	}
 }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D4E77E927FB4AFD007691F2 /* CityWithLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4E77E827FB4AFD007691F2 /* CityWithLocationAPI.swift */; };
+		3D4E77E927FB4AFD007691F2 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4E77E827FB4AFD007691F2 /* WebService.swift */; };
 		3D5364A3283E069400187F24 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5364A2283E069400187F24 /* Weather.swift */; };
 		3D559B902822559B0008A454 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D559B8F2822559B0008A454 /* City.swift */; };
 		E3579D312416C2CD0094C84A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3579D302416C2CD0094C84A /* AppDelegate.swift */; };
@@ -23,7 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D4E77E827FB4AFD007691F2 /* CityWithLocationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWithLocationAPI.swift; sourceTree = "<group>"; };
+		3D4E77E827FB4AFD007691F2 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		3D5364A2283E069400187F24 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		3D559B8F2822559B0008A454 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		E3579D2D2416C2CD0094C84A /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,7 +54,7 @@
 		3D4E77EA27FB4B03007691F2 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				3D4E77E827FB4AFD007691F2 /* CityWithLocationAPI.swift */,
+				3D4E77E827FB4AFD007691F2 /* WebService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -200,7 +200,7 @@
 				E3579D312416C2CD0094C84A /* AppDelegate.swift in Sources */,
 				E3579D522416CDF10094C84A /* GeolocationViewController.swift in Sources */,
 				E3579D332416C2CD0094C84A /* SceneDelegate.swift in Sources */,
-				3D4E77E927FB4AFD007691F2 /* CityWithLocationAPI.swift in Sources */,
+				3D4E77E927FB4AFD007691F2 /* WebService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
