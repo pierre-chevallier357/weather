@@ -16,7 +16,8 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
     // @IBOutlet weak var cityLabel: UILabel?
     // @IBOutlet weak var localityLabel: UILabel?
     @IBOutlet weak var location: UILabel?
-    @IBOutlet weak var weather: UILabel?
+    @IBOutlet weak var temperature: UILabel?
+    @IBOutlet weak var weather_code: UILabel?
     
     let client = WebService()
 	
@@ -66,6 +67,10 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
 	func locationManager(_ manager:CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		guard let location = locations.last else { return }
         
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
         print("location", location)
 		// latitudeLabel.text = String(location.coordinate.latitude)
 		// longitudeLabel.text = String(location.coordinate.longitude)
@@ -81,10 +86,17 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
             }
         })
         
-        client.getWeather(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.latitude), completion: { tags in
-            print("weather",tags?.hourly.temperature_2m[0] as Any)
+        client.getWeather(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), completion: { tags in
+            //print("weather",tags?.hourly.temperature_2m[0] as Any)
             DispatchQueue.main.async {
-                self.weather?.text = String((tags?.hourly.temperature_2m[0])! )
+                self.temperature?.text = String((tags?.current_weather.temperature)! )
+                self.weather_code?.text = String((tags?.current_weather.weathercode)! )
+                /* print("DATE",tags?.hourly.time[0].prefix(10))
+                var currentDate:String!
+                currentDate = dateFormatter.string(from: date)
+                print("DATE2", dateFormatter.string(from: date))
+                print("Found",tags?.hourly.time.first(where: {$0 == currentDate}))
+                 */
             }
         })
 	}

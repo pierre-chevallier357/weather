@@ -69,6 +69,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKc-py-wK8">
+                                <rect key="frame" x="20" y="368" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="HKZ-R3-WY0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="x5f-wR-fKp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -85,12 +94,14 @@
                             <constraint firstItem="cCV-HP-tTG" firstAttribute="leading" secondItem="x5f-wR-fKp" secondAttribute="leading" constant="20" id="i0U-iC-dxi"/>
                             <constraint firstItem="Bg7-NI-WTP" firstAttribute="top" secondItem="cCV-HP-tTG" secondAttribute="bottom" constant="10" id="op4-Ax-zCS"/>
                             <constraint firstItem="lig-Iy-ezK" firstAttribute="leading" secondItem="x5f-wR-fKp" secondAttribute="leading" constant="20" id="vcg-bm-LNv"/>
+                            <constraint firstItem="fKc-py-wK8" firstAttribute="top" secondItem="sDf-sS-ZQa" secondAttribute="bottom" constant="10" id="wTN-4f-Xwk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZH3-ff-9hS"/>
                     <connections>
                         <outlet property="location" destination="Bg7-NI-WTP" id="OoX-fo-Afp"/>
-                        <outlet property="weather" destination="sDf-sS-ZQa" id="fQo-jt-Ru8"/>
+                        <outlet property="temperature" destination="sDf-sS-ZQa" id="fQo-jt-Ru8"/>
+                        <outlet property="weather_code" destination="fKc-py-wK8" id="jfB-Yu-QF1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yQi-kW-w2o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
