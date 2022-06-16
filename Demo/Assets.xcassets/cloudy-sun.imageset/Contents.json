@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "cloudy-sun.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Calque 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

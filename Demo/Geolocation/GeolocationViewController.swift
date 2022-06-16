@@ -97,6 +97,29 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
                 print("DATE2", dateFormatter.string(from: date))
                 print("Found",tags?.hourly.time.first(where: {$0 == currentDate}))
                  */
+                let imageName: String
+                switch tags?.current_weather.weathercode {
+                case 1,2,3:
+                    imageName = "clouds.png"
+                case 45,48:
+                    imageName = "fog.png"
+                case 51,53,55:
+                    imageName = "light-rain.png"
+                case 56,57,61,63,65,66,67:
+                    imageName = "rain.png"
+                case 71,73,75,77:
+                    imageName = "snow.png"
+                case 80,81,82,85,86:
+                    imageName = "heavy-rain.png"
+                case 95,96,99:
+                    imageName = "storm.png"
+                default:
+                    imageName = "sun.png"
+                }
+                let image = UIImage(named: imageName)
+                let imageView = UIImageView(image: image!)
+                imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
+                self.view.addSubview(imageView)
             }
         })
 	}
