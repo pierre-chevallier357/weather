@@ -84,14 +84,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbp-Tp-5dK">
-                                <rect key="frame" x="153.5" y="388" width="107" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbp-Tp-5dK">
+                                <rect key="frame" x="154" y="388" width="106.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TqK-Qm-1m2">
-                                <rect key="frame" x="87" y="581" width="240" height="128"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gkj-y2-WZ9">
+                                <rect key="frame" x="87" y="467" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="x5f-wR-fKp"/>
@@ -105,22 +106,14 @@
                             <constraint firstItem="x5f-wR-fKp" firstAttribute="trailing" secondItem="Bg7-NI-WTP" secondAttribute="trailing" constant="20" id="F9l-96-NWs"/>
                             <constraint firstItem="cCV-HP-tTG" firstAttribute="top" secondItem="x5f-wR-fKp" secondAttribute="top" constant="50" id="FBg-te-9eX"/>
                             <constraint firstItem="Nbp-Tp-5dK" firstAttribute="top" secondItem="sDf-sS-ZQa" secondAttribute="bottom" constant="20" id="GMk-0m-r3X"/>
-                            <constraint firstItem="TqK-Qm-1m2" firstAttribute="centerX" secondItem="k1y-9E-Sf0" secondAttribute="centerX" id="Izp-g1-cdz"/>
                             <constraint firstItem="x5f-wR-fKp" firstAttribute="trailing" secondItem="sDf-sS-ZQa" secondAttribute="trailing" constant="20" id="LAq-fo-QSn"/>
-                            <constraint firstItem="x5f-wR-fKp" firstAttribute="bottom" secondItem="TqK-Qm-1m2" secondAttribute="bottom" constant="153" id="Pxr-Io-EkB"/>
-                            <constraint firstItem="TqK-Qm-1m2" firstAttribute="leading" secondItem="x5f-wR-fKp" secondAttribute="leading" constant="87" id="QNc-1p-KIp"/>
                             <constraint firstItem="x5f-wR-fKp" firstAttribute="trailing" secondItem="lig-Iy-ezK" secondAttribute="trailing" constant="20" id="T9B-vO-CIh"/>
                             <constraint firstItem="x5f-wR-fKp" firstAttribute="trailing" secondItem="cCV-HP-tTG" secondAttribute="trailing" constant="20" id="VeU-mU-erW"/>
-                            <constraint firstItem="TqK-Qm-1m2" firstAttribute="centerX" secondItem="k1y-9E-Sf0" secondAttribute="centerX" id="b2G-gW-yca"/>
                             <constraint firstItem="2jF-Ex-Wt0" firstAttribute="centerX" secondItem="k1y-9E-Sf0" secondAttribute="centerX" id="b4t-K8-F6G"/>
-                            <constraint firstItem="TqK-Qm-1m2" firstAttribute="centerX" secondItem="k1y-9E-Sf0" secondAttribute="centerX" id="bUy-hl-YwA"/>
-                            <constraint firstItem="x5f-wR-fKp" firstAttribute="trailing" secondItem="TqK-Qm-1m2" secondAttribute="trailing" constant="87" id="esG-nT-vPb"/>
                             <constraint firstItem="fKc-py-wK8" firstAttribute="top" secondItem="k1y-9E-Sf0" secondAttribute="top" constant="434" id="fr8-x2-tDX"/>
                             <constraint firstItem="Bg7-NI-WTP" firstAttribute="leading" secondItem="x5f-wR-fKp" secondAttribute="leading" constant="20" id="gBh-bK-TZA"/>
                             <constraint firstItem="cCV-HP-tTG" firstAttribute="leading" secondItem="x5f-wR-fKp" secondAttribute="leading" constant="20" id="i0U-iC-dxi"/>
                             <constraint firstItem="Bg7-NI-WTP" firstAttribute="top" secondItem="cCV-HP-tTG" secondAttribute="bottom" constant="10" id="op4-Ax-zCS"/>
-                            <constraint firstItem="TqK-Qm-1m2" firstAttribute="centerX" secondItem="k1y-9E-Sf0" secondAttribute="centerX" id="pGg-M1-ynQ"/>
-                            <constraint firstItem="TqK-Qm-1m2" firstAttribute="centerX" secondItem="k1y-9E-Sf0" secondAttribute="centerX" id="v39-cF-dt7"/>
                             <constraint firstItem="lig-Iy-ezK" firstAttribute="leading" secondItem="x5f-wR-fKp" secondAttribute="leading" constant="20" id="vcg-bm-LNv"/>
                             <constraint firstItem="2jF-Ex-Wt0" firstAttribute="top" secondItem="sDf-sS-ZQa" secondAttribute="bottom" constant="720" id="wGS-Ce-21b"/>
                             <constraint firstItem="sDf-sS-ZQa" firstAttribute="top" secondItem="lig-Iy-ezK" secondAttribute="bottom" constant="20" id="yDV-Kl-HN7"/>
@@ -128,9 +121,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZH3-ff-9hS"/>
                     <connections>
+                        <outlet property="imageView" destination="Gkj-y2-WZ9" id="phf-Ox-2aE"/>
                         <outlet property="location" destination="Bg7-NI-WTP" id="OoX-fo-Afp"/>
                         <outlet property="temperature" destination="sDf-sS-ZQa" id="fQo-jt-Ru8"/>
-                        <outlet property="view" destination="TqK-Qm-1m2" id="mMn-ou-iOz"/>
                         <outlet property="weather_code" destination="fKc-py-wK8" id="jfB-Yu-QF1"/>
                     </connections>
                 </viewController>

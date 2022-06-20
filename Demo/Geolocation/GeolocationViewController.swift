@@ -18,6 +18,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var location: UILabel?
     @IBOutlet weak var temperature: UILabel?
     @IBOutlet weak var weather_code: UILabel?
+    @IBOutlet weak var imageView: UIImageView!
     
     let client = WebService()
 	
@@ -99,7 +100,9 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
                  */
                 let imageName: String
                 switch tags?.current_weather.weathercode {
-                case 1,2,3:
+                case 2:
+                    imageName = "cloudy-sun.png"
+                case 3:
                     imageName = "clouds.png"
                 case 45,48:
                     imageName = "fog.png"
@@ -117,9 +120,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
                     imageName = "sun.png"
                 }
                 let image = UIImage(named: imageName)
-                let imageView = UIImageView(image: image!)
-                imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
-                self.view.addSubview(imageView)
+                self.imageView.image = image
             }
         })
 	}
