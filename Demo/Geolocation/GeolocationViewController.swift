@@ -19,6 +19,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var temperature: UILabel?
     @IBOutlet weak var weather_code: UILabel?
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var background: UIImageView!
     
     let client = WebService()
 	
@@ -119,8 +120,12 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
                 default:
                     imageName = "sun.png"
                 }
-                let image = UIImage(named: imageName)
-                self.imageView.image = image
+                let weather_icon = UIImage(named: imageName)
+                self.imageView.image = weather_icon
+                
+                let bg_img = "background.jpeg"
+                let background = UIImage(named: bg_img)
+                self.background.image = background
             }
         })
 	}
