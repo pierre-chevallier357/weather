@@ -92,6 +92,10 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
             //print("weather",tags?.hourly.temperature_2m[0] as Any)
             DispatchQueue.main.async {
                 self.temperature?.text = String((tags?.current_weather.temperature)! )
+                self.temperature?.text = self.temperature?.text!.replacingOccurrences(of: ".", with: "°C")
+                var temperatureString = self.temperature?.text
+                temperatureString?.removeLast()
+                self.temperature?.text = temperatureString
                 self.weather_code?.text = String((tags?.current_weather.weathercode)! )
                 /* print("DATE",tags?.hourly.time[0].prefix(10))
                 var currentDate:String!
