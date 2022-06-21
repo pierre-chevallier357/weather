@@ -91,18 +91,9 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
         client.getWeather(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), completion: { tags in
             //print("weather",tags?.hourly.temperature_2m[0] as Any)
             DispatchQueue.main.async {
-                self.temperature?.text = String((tags?.current_weather.temperature)! )
-                self.temperature?.text = self.temperature?.text!.replacingOccurrences(of: ".", with: "°C")
-                var temperatureString = self.temperature?.text
-                temperatureString?.removeLast()
-                self.temperature?.text = temperatureString
+                self.refactorTemperature(tags: tags!)
                 self.weather_code?.text = String((tags?.current_weather.weathercode)! )
-                /* print("DATE",tags?.hourly.time[0].prefix(10))
-                var currentDate:String!
-                currentDate = dateFormatter.string(from: date)
-                print("DATE2", dateFormatter.string(from: date))
-                print("Found",tags?.hourly.time.first(where: {$0 == currentDate}))
-                 */
+
                 let imageName: String
                 switch tags?.current_weather.weathercode {
                 case 2:
@@ -133,4 +124,12 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
             }
         })
 	}
+    
+    func refactorTemperature(tags: Weather){
+        self.temperature?.text = String((tags.current_weather.temperature)! )
+        self.temperature?.text = self.temperature?.text!.replacingOccurrences(of: ".", with: "°C")
+        var temperatureString = self.temperature?.text
+        temperatureString?.removeLast()
+        self.temperature?.text = temperatureString
+    }
 }
