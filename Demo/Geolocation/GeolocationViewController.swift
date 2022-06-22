@@ -15,9 +15,12 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var weatherCode: UILabel?
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var background: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
+    
     var weatherCodeList: [Int] = []
     var timeList: [String] = []
     var temperatureList: [Float] = []
+    
     
     let client = WebService()
 	
@@ -110,6 +113,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
         self.timeList = refactoredTimeList
+        self.tableView = self.timeList
     }
     
     func filterWeatherCodesByDay() {
