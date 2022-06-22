@@ -19,6 +19,7 @@ public class Weather: Decodable {
     public class Hourly: Decodable {
         var time: [String]!
         var temperature_2m: [Float]!
+        var weathercode: [Int]!
     }
     
     public class HourlyUnits: Decodable {

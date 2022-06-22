@@ -53,7 +53,7 @@ class WebService {
     }
     
     func getWeather(latitude: String, longitude: String, completion: @escaping (Weather?) -> Void) {
-        let url = URL(string: baseWeatherUrl() + "latitude=" + latitude + "&longitude=" + longitude + "&current_weather=true")!
+        let url = URL(string: baseWeatherUrl() + "latitude=" + latitude + "&longitude=" + longitude + "&current_weather=true&hourly=temperature_2m&hourly=weathercode")!
         print(url)
         let session = URLSession.shared.dataTask(with: url) { (data, response, error) in
             do {

@@ -2,7 +2,7 @@
 //  GeolocationViewController.swift
 //  Demo
 //
-//  Created by Julie Saby on 09/03/2020.
+//  Created by Pierre Chevallier on 04/04/2020.
 //  Copyright © 2020 Julie Saby. All rights reserved.
 //
 
@@ -10,16 +10,14 @@ import UIKit
 import CoreLocation
 
 class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
-	
-	// @IBOutlet weak var latitudeLabel: UILabel!
-	// @IBOutlet weak var longitudeLabel: UILabel!
-    // @IBOutlet weak var cityLabel: UILabel?
-    // @IBOutlet weak var localityLabel: UILabel?
     @IBOutlet weak var location: UILabel?
     @IBOutlet weak var temperature: UILabel?
-    @IBOutlet weak var weather_code: UILabel?
+    @IBOutlet weak var weatherCode: UILabel?
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var background: UIImageView!
+    var weatherCodeList: [Int] = []
+    var timeList: [String] = []
+    var temperatureList: [Float] = []
     
     let client = WebService()
 	
@@ -31,7 +29,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
 		checkLocationServices()
 	}
 	
-	//check if the authorization services is ok
+	// Check if the authorization services is ok
 	func checkLocationServices(){
 		if CLLocationManager.locationServicesEnabled(){
 			setUpLocationManager()
@@ -73,9 +71,6 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        print("location", location)
-		// latitudeLabel.text = String(location.coordinate.latitude)
-		// longitudeLabel.text = String(location.coordinate.longitude)
         client.getCity(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), completion: { tags in
             DispatchQueue.main.async {
                 //self.cityLabel?.text = tags?.city
@@ -89,47 +84,89 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
         })
         
         client.getWeather(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), completion: { tags in
-            //print("weather",tags?.hourly.temperature_2m[0] as Any)
-            DispatchQueue.main.async {
-                self.refactorTemperature(tags: tags!)
-                self.weather_code?.text = String((tags?.current_weather.weathercode)! )
 
-                let imageName: String
-                switch tags?.current_weather.weathercode {
-                case 2:
-                    imageName = "cloudy-sun.png"
-                case 3:
-                    imageName = "clouds.png"
-                case 45,48:
-                    imageName = "fog.png"
-                case 51,53,55:
-                    imageName = "light-rain.png"
-                case 56,57,61,63,65,66,67:
-                    imageName = "rain.png"
-                case 71,73,75,77:
-                    imageName = "snow.png"
-                case 80,81,82,85,86:
-                    imageName = "heavy-rain.png"
-                case 95,96,99:
-                    imageName = "storm.png"
-                default:
-                    imageName = "sun.png"
-                }
-                let weather_icon = UIImage(named: imageName)
-                self.imageView.image = weather_icon
+            DispatchQueue.main.async {
+                self.refactorCurrentTemperature(tags: tags!)
                 
-                let bg_img = "background.jpeg"
-                let background = UIImage(named: bg_img)
-                self.background.image = background
+                self.weatherCode?.text = String((tags?.current_weather.weathercode)! )
+                self.weatherCodeList = (tags?.hourly.weathercode)!
+                self.timeList = (tags?.hourly.time)!
+                self.temperatureList = (tags?.hourly.temperature_2m)!
+                
+                self.filterWeatherCodesByDay()
+                self.filterTimesByDay()
+                self.filterTemperaturesByDay()
+                
+                self.setCurrentWeatherIcon(tags: tags!)
             }
         })
 	}
     
-    func refactorTemperature(tags: Weather){
+    func filterTimesByDay() {
+        var refactoredTimeList: [String] = []
+        for i in 1...self.timeList.count {
+            if (i%24 == 0) {
+                refactoredTimeList.append(self.timeList[i-1])
+            }
+        }
+        self.timeList = refactoredTimeList
+    }
+    
+    func filterWeatherCodesByDay() {
+        var refactoredWeatherCodeList: [Int] = []
+        for i in 1...self.weatherCodeList.count {
+            if (i%24 == 0) {
+                refactoredWeatherCodeList.append(self.weatherCodeList[i-1])
+            }
+        }
+        self.weatherCodeList = refactoredWeatherCodeList
+    }
+    
+    func filterTemperaturesByDay() {
+        var refactoredTemperatureList: [Float] = []
+        for i in 1...self.temperatureList.count {
+            if (i%24 == 0) {
+                refactoredTemperatureList.append(self.temperatureList[i-1])
+            }
+        }
+        self.temperatureList = refactoredTemperatureList
+    }
+    
+    func refactorCurrentTemperature(tags: Weather){
         self.temperature?.text = String((tags.current_weather.temperature)! )
         self.temperature?.text = self.temperature?.text!.replacingOccurrences(of: ".", with: "°C")
         var temperatureString = self.temperature?.text
         temperatureString?.removeLast()
         self.temperature?.text = temperatureString
+    }
+    
+    func setCurrentWeatherIcon(tags: Weather) {
+        let imageName: String
+        switch tags.current_weather.weathercode {
+        case 2:
+            imageName = "cloudy-sun.png"
+        case 3:
+            imageName = "clouds.png"
+        case 45,48:
+            imageName = "fog.png"
+        case 51,53,55:
+            imageName = "light-rain.png"
+        case 56,57,61,63,65,66,67:
+            imageName = "rain.png"
+        case 71,73,75,77:
+            imageName = "snow.png"
+        case 80,81,82,85,86:
+            imageName = "heavy-rain.png"
+        case 95,96,99:
+            imageName = "storm.png"
+        default:
+            imageName = "sun.png"
+        }
+        let weather_icon = UIImage(named: imageName)
+        self.imageView.image = weather_icon
+        
+        let bg_img = "background.jpeg"
+        let background = UIImage(named: bg_img)
+        self.background.image = background
     }
 }
