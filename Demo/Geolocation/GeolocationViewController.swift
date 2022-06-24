@@ -9,10 +9,9 @@
 import UIKit
 import CoreLocation
 
-class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
+class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var location: UILabel?
     @IBOutlet weak var temperature: UILabel?
-    @IBOutlet weak var weatherCode: UILabel?
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var background: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -21,15 +20,31 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
     var timeList: [String] = []
     var temperatureList: [Float] = []
     
-    
     let client = WebService()
 	
 	let locationManager = CLLocationManager()
 	
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return weatherCodeList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
+        let weatherCode: Int = weatherCodeList[indexPath.row]
+        let weatherIconName: String = self.getWeatherIconName(weatherCode: weatherCode)
+
+        cell.temperature.text = String(temperatureList[indexPath.row])
+        cell.weatherIcon = UIImageView(image: UIImage(named: weatherIconName))
+        return cell
+    }
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		checkLocationServices()
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
 	}
 	
 	// Check if the authorization services is ok
@@ -66,18 +81,15 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
 		}
 	}
 	
-	//update the position of the user when he move and show buses points with itineraire
+	// Update the position of the user when he move and show buses points with itineraire
 	func locationManager(_ manager:CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		guard let location = locations.last else { return }
         
-        let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         client.getCity(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), completion: { tags in
             DispatchQueue.main.async {
-                //self.cityLabel?.text = tags?.city
-                //self.localityLabel?.text = tags?.locality
                 if (tags?.city != "") {
                     self.location?.text = tags?.city
                 } else {
@@ -91,7 +103,6 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
             DispatchQueue.main.async {
                 self.refactorCurrentTemperature(tags: tags!)
                 
-                self.weatherCode?.text = String((tags?.current_weather.weathercode)! )
                 self.weatherCodeList = (tags?.hourly.weathercode)!
                 self.timeList = (tags?.hourly.time)!
                 self.temperatureList = (tags?.hourly.temperature_2m)!
@@ -100,7 +111,10 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
                 self.filterTimesByDay()
                 self.filterTemperaturesByDay()
                 
-                self.setCurrentWeatherIcon(tags: tags!)
+                self.setCurrentDayWeatherIcon(tags: tags!)
+                self.setBackgroundImage()
+                
+                self.tableView.reloadData()
             }
         })
 	}
@@ -113,7 +127,6 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
         self.timeList = refactoredTimeList
-        self.tableView = self.timeList
     }
     
     func filterWeatherCodesByDay() {
@@ -144,9 +157,21 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
         self.temperature?.text = temperatureString
     }
     
-    func setCurrentWeatherIcon(tags: Weather) {
+    func setCurrentDayWeatherIcon(tags: Weather) {
+        let imageName: String = self.getWeatherIconName(weatherCode:tags.current_weather.weathercode)
+        let weatherIcon = UIImage(named: imageName)
+        self.imageView.image = weatherIcon
+    }
+    
+    func setBackgroundImage() {
+        let backgroundImage = "background.jpeg"
+        let background = UIImage(named: backgroundImage)
+        self.background.image = background
+    }
+    
+    func getWeatherIconName(weatherCode: Int) -> String {
         let imageName: String
-        switch tags.current_weather.weathercode {
+        switch weatherCode {
         case 2:
             imageName = "cloudy-sun.png"
         case 3:
@@ -166,11 +191,6 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate {
         default:
             imageName = "sun.png"
         }
-        let weather_icon = UIImage(named: imageName)
-        self.imageView.image = weather_icon
-        
-        let bg_img = "background.jpeg"
-        let background = UIImage(named: bg_img)
-        self.background.image = background
+        return imageName
     }
 }

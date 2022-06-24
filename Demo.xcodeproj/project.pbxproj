@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D0AB0CF286614F8001186B6 /* ViewControllerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0AB0CE286614F8001186B6 /* ViewControllerTableViewCell.swift */; };
 		3D4E77E927FB4AFD007691F2 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4E77E827FB4AFD007691F2 /* WebService.swift */; };
 		3D5364A3283E069400187F24 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5364A2283E069400187F24 /* Weather.swift */; };
 		3D559B902822559B0008A454 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D559B8F2822559B0008A454 /* City.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D0AB0CE286614F8001186B6 /* ViewControllerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTableViewCell.swift; sourceTree = "<group>"; };
 		3D4E77E827FB4AFD007691F2 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		3D5364A2283E069400187F24 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		3D559B8F2822559B0008A454 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		E3579D4C2416CA260094C84A /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				3D0AB0CE286614F8001186B6 /* ViewControllerTableViewCell.swift */,
 				E3579D462416C66C0094C84A /* CustomTableViewController.swift */,
 				E3579D482416C78F0094C84A /* DataTableViewCell.swift */,
 			);
@@ -193,6 +196,7 @@
 			files = (
 				E3579D472416C66C0094C84A /* CustomTableViewController.swift in Sources */,
 				E3579D542416CEFB0094C84A /* UIViewControllerExtension.swift in Sources */,
+				3D0AB0CF286614F8001186B6 /* ViewControllerTableViewCell.swift in Sources */,
 				E3579D352416C2CD0094C84A /* ViewController.swift in Sources */,
 				E3579D492416C78F0094C84A /* DataTableViewCell.swift in Sources */,
 				3D5364A3283E069400187F24 /* Weather.swift in Sources */,
