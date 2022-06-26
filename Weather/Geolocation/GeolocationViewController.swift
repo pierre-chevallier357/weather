@@ -103,6 +103,10 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
+        self.callAPIs(location: location)
+	}
+    
+    func callAPIs(location: CLLocation) {
         client.getCity(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), completion: { tags in
             DispatchQueue.main.async {
                 if (tags?.city != "") {
@@ -132,7 +136,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
                 self.tableView.reloadData()
             }
         })
-	}
+    }
     
     func filterTimesByDay() {
         var refactoredTimeList: [String] = []
