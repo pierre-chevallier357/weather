@@ -96,7 +96,7 @@
 				E3579D342416C2CD0094C84A /* ViewController.swift */,
 				E3579D532416CEFB0094C84A /* UIViewControllerExtension.swift */,
 				E3579D4C2416CA260094C84A /* TableView */,
-				E3579D502416CDE00094C84A /* Geolocation */,
+				E3579D502416CDE00094C84A /* Controller */,
 				E3579D392416C2CF0094C84A /* Assets.xcassets */,
 				E3579D442416C5540094C84A /* Main.storyboard */,
 				E3579D3B2416C2CF0094C84A /* LaunchScreen.storyboard */,
@@ -115,12 +115,12 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
-		E3579D502416CDE00094C84A /* Geolocation */ = {
+		E3579D502416CDE00094C84A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				E3579D512416CDF00094C84A /* GeolocationViewController.swift */,
 			);
-			path = Geolocation;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
