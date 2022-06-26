@@ -3,7 +3,7 @@
 //  Demo
 //
 //  Created by Pierre Chevallier on 04/04/2020.
-//  Copyright © 2020 Julie Saby. All rights reserved.
+//  Copyright © 2020 Pierre Chevallier. All rights reserved.
 //
 
 import UIKit
@@ -22,9 +22,9 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
     var dayCounter: Int = 1
     
     let client = WebService()
-	
 	let locationManager = CLLocationManager()
 	
+    // UITableView initialization functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weatherCodeList.count
     }
@@ -59,7 +59,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
         self.tableView.dataSource = self
         
         self.tableView.layer.cornerRadius = 10
-        self.tableView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.9)
+        self.tableView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.93)
 	}
 	
 	// Check if the authorization services is ok
@@ -96,7 +96,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
 		}
 	}
 	
-	// Update the position of the user when he move and show buses points with itineraire
+	// Update the position of the user when he moves and show buses points with itinerary
 	func locationManager(_ manager:CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		guard let location = locations.last else { return }
         
@@ -116,7 +116,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
         client.getWeather(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), completion: { tags in
 
             DispatchQueue.main.async {
-                self.refactorCurrentTemperature(tags: tags!)
+                self.refactorTodayTemperature(tags: tags!)
                 
                 self.weatherCodeList = (tags?.hourly.weathercode)!
                 self.timeList = (tags?.hourly.time)!
@@ -126,7 +126,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
                 self.filterTimesByDay()
                 self.filterTemperaturesByDay()
                 
-                self.setCurrentDayWeatherIcon(tags: tags!)
+                self.setTodayWeatherIcon(tags: tags!)
                 self.setBackgroundImage()
                 
                 self.tableView.reloadData()
@@ -164,7 +164,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
         self.temperatureList = refactoredTemperatureList
     }
     
-    func refactorCurrentTemperature(tags: Weather){
+    func refactorTodayTemperature(tags: Weather){
         self.temperature?.text = String((tags.current_weather.temperature)! )
         self.temperature?.text = self.temperature?.text!.replacingOccurrences(of: ".", with: "°C")
         var temperatureString = self.temperature?.text
@@ -178,7 +178,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
         return tempRefactored
     }
     
-    func setCurrentDayWeatherIcon(tags: Weather) {
+    func setTodayWeatherIcon(tags: Weather) {
         let imageName: String = self.getWeatherIconName(weatherCode:tags.current_weather.weathercode)
         let weatherIcon = UIImage(named: imageName)
         self.imageView.image = weatherIcon

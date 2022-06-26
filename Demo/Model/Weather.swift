@@ -3,7 +3,7 @@
 //  Demo
 //
 //  Created by Pierre Chevallier on 25/05/2022.
-//  Copyright © 2022 Julie Saby. All rights reserved.
+//  Copyright © 2022 Pierre Chevallier. All rights reserved.
 //
 
 import Foundation
