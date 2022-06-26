@@ -1,6 +1,6 @@
 //
 //  CityWithLocation.swift
-//  Demo
+//  Weather
 //
 //  Created by Pierre Chevallier on 04/04/2022.
 //  Copyright © 2022 Pierre Chevallier. All rights reserved.

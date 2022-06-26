@@ -1,6 +1,6 @@
 //
 //  DataTableViewCell.swift
-//  Demo
+//  Weather
 //
 //  Created by Pierre Chevallier on 09/03/2020.
 //  Copyright © 2020 Pierre Chevallier. All rights reserved.

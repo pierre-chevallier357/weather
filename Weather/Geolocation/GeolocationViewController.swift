@@ -1,6 +1,6 @@
 //
 //  GeolocationViewController.swift
-//  Demo
+//  Weather
 //
 //  Created by Pierre Chevallier on 04/04/2020.
 //  Copyright © 2020 Pierre Chevallier. All rights reserved.
