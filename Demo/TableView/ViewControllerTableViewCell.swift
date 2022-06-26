@@ -9,8 +9,9 @@
 import UIKit
 
 class ViewControllerTableViewCell: UITableViewCell {
-    @IBOutlet var weatherIcon: UIView!
     @IBOutlet var temperature: UILabel!
+    @IBOutlet var weather: UILabel!
+    @IBOutlet var day: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

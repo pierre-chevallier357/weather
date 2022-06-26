@@ -19,6 +19,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
     var weatherCodeList: [Int] = []
     var timeList: [String] = []
     var temperatureList: [Float] = []
+    var dayCounter: Int = 1
     
     let client = WebService()
 	
@@ -30,21 +31,35 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
+        
         let weatherCode: Int = weatherCodeList[indexPath.row]
-        let weatherIconName: String = self.getWeatherIconName(weatherCode: weatherCode)
+        let weather: String = self.getWeatherName(weatherCode: weatherCode)
+        
+        var temperature: String = String(temperatureList[indexPath.row])
+        temperature = self.refactorTemperature(temp: temperature)
+        
+        let day = "J+\(self.dayCounter)"
+        self.dayCounter += 1
 
-        cell.temperature.text = String(temperatureList[indexPath.row])
-        cell.weatherIcon = UIImageView(image: UIImage(named: weatherIconName))
+        cell.weather.text = weather
+        cell.temperature.text = temperature
+        cell.day.text = day
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
     }
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		checkLocationServices()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        self.tableView.layer.cornerRadius = 10
+        self.tableView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.9)
 	}
 	
 	// Check if the authorization services is ok
@@ -157,6 +172,12 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
         self.temperature?.text = temperatureString
     }
     
+    func refactorTemperature(temp: String) -> String{
+        var tempRefactored = temp.replacingOccurrences(of: ".", with: "°C")
+        tempRefactored.removeLast()
+        return tempRefactored
+    }
+    
     func setCurrentDayWeatherIcon(tags: Weather) {
         let imageName: String = self.getWeatherIconName(weatherCode:tags.current_weather.weathercode)
         let weatherIcon = UIImage(named: imageName)
@@ -192,5 +213,30 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
             imageName = "sun.png"
         }
         return imageName
+    }
+    
+    func getWeatherName(weatherCode: Int) -> String {
+        let weatherName: String
+        switch weatherCode {
+        case 2:
+            weatherName = "Couvert"
+        case 3:
+            weatherName = "Nuageux"
+        case 45,48:
+            weatherName = "Brouillard"
+        case 51,53,55:
+            weatherName = "Bruine"
+        case 56,57,61,63,65,66,67:
+            weatherName = "Pluie"
+        case 71,73,75,77:
+            weatherName = "Neige"
+        case 80,81,82,85,86:
+            weatherName = "Averse"
+        case 95,96,99:
+            weatherName = "Orage"
+        default:
+            weatherName = "Soleil"
+        }
+        return weatherName
     }
 }
