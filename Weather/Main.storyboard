@@ -55,11 +55,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="UWt-Z1-kfX">
-                                <rect key="frame" x="0.0" y="494" width="414" height="300"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="UWt-Z1-kfX">
+                                <rect key="frame" x="0.0" y="532" width="414" height="310"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="8Ft-ek-aZs"/>
+                                    <constraint firstAttribute="height" constant="310" id="8Ft-ek-aZs"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="310" id="hlG-kA-TJl"/>
                                     <constraint firstAttribute="width" constant="414" id="onx-cv-Pj5"/>
                                 </constraints>
                                 <prototypes>

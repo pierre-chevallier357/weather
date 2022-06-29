@@ -121,6 +121,7 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
         client.getWeather(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), completion: { tags in
 
             DispatchQueue.main.async {
+                self.dayCounter = 1
                 self.refactorTodayTemperature(tags: tags!)
                 
                 self.weatherCodeList = (tags?.hourly.weathercode)!
