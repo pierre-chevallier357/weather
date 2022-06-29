@@ -33,7 +33,6 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
         
         let weatherCode: Int = weatherCodeList[indexPath.row]
-        let weather: String = self.getWeatherName(weatherCode: weatherCode)
         
         var temperature: String = String(temperatureList[indexPath.row])
         temperature = self.refactorTemperature(temp: temperature)
@@ -41,7 +40,9 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
         let day = "J+\(self.dayCounter)"
         self.dayCounter += 1
 
-        cell.weather.text = weather
+        let imageText = getWeatherIconName(weatherCode: weatherCode)
+        let weatherIcon = UIImage(named: imageText)
+        cell.weather.image = weatherIcon
         cell.temperature.text = temperature
         cell.day.text = day
         return cell

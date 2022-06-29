@@ -10,7 +10,7 @@ import UIKit
 
 class ViewControllerTableViewCell: UITableViewCell {
     @IBOutlet var temperature: UILabel!
-    @IBOutlet var weather: UILabel!
+    @IBOutlet var weather: UIImageView!
     @IBOutlet var day: UILabel!
     
     override func awakeFromNib() {
