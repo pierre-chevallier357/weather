@@ -220,29 +220,4 @@ class GeolocationViewController: UIViewController, CLLocationManagerDelegate, UI
         }
         return imageName
     }
-    
-    func getWeatherName(weatherCode: Int) -> String {
-        let weatherName: String
-        switch weatherCode {
-        case 2:
-            weatherName = "Couvert"
-        case 3:
-            weatherName = "Nuageux"
-        case 45,48:
-            weatherName = "Brouillard"
-        case 51,53,55:
-            weatherName = "Bruine"
-        case 56,57,61,63,65,66,67:
-            weatherName = "Pluie"
-        case 71,73,75,77:
-            weatherName = "Neige"
-        case 80,81,82,85,86:
-            weatherName = "Averse"
-        case 95,96,99:
-            weatherName = "Orage"
-        default:
-            weatherName = "Soleil"
-        }
-        return weatherName
-    }
 }
